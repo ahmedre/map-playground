@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Modifier
+import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.foundation.CircuitCompositionLocals
-import com.slack.circuit.foundation.CircuitContent
+import com.slack.circuit.foundation.NavigableCircuitContent
+import com.slack.circuit.foundation.rememberCircuitNavigator
 import dev.helw.playground.map.core.ui.theme.MapPlaygroundTheme
 import dev.helw.playground.map.di.AppGraph
 import dev.helw.playground.map.feature.mapscreen.MapWrapperScreen
@@ -29,7 +29,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             MapPlaygroundTheme {
                 CircuitCompositionLocals(circuit) {
-                    CircuitContent(MapWrapperScreen, Modifier.fillMaxSize())
+                    val backStack = rememberSaveableBackStack(root = MapWrapperScreen)
+                    val navigator = rememberCircuitNavigator(backStack)
+                    NavigableCircuitContent(navigator, backStack)
                 }
             }
         }

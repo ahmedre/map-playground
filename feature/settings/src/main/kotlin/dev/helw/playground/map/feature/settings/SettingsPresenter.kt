@@ -1,4 +1,4 @@
-package dev.helw.playground.map.feature.mapscreen
+package dev.helw.playground.map.feature.settings
 
 import androidx.compose.runtime.Composable
 import com.slack.circuit.codegen.annotations.CircuitInject
@@ -10,21 +10,22 @@ import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 
-class MapWrapperPresenter @AssistedInject constructor(
+@AssistedInject
+class SettingsPresenter(
     @Assisted private val navigator: Navigator
-): Presenter<MapWrapperScreen.MapState> {
+): Presenter<SettingsState> {
 
-    @CircuitInject(MapWrapperScreen::class, AppScope::class)
+    @CircuitInject(SettingsScreen::class, AppScope::class)
     @AssistedFactory
     fun interface Factory {
-        fun create(navigator: Navigator): MapWrapperPresenter
+        fun create(navigator: Navigator): SettingsPresenter
     }
 
     @Composable
-    override fun present(): MapWrapperScreen.MapState {
-        return MapWrapperScreen.MapState {
-            if (it == MapWrapperScreen.MapState.Event.Settings) {
-                navigator.goTo(SettingsScreen)
+    override fun present(): SettingsState {
+        return SettingsState {
+            if (it == Event.CloseSettings) {
+                navigator.pop()
             }
         }
     }

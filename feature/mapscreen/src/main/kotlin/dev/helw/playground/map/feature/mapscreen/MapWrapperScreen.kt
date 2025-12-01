@@ -10,6 +10,8 @@ data object MapWrapperScreen : Screen {
         val eventSink: (Event) -> Unit
     ) : CircuitUiState {
 
-        sealed class Event
+        sealed class Event {
+            data object Settings : Event()
+        }
     }
 }

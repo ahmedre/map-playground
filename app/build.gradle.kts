@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":core:di"))
     implementation(project(":core:ui"))
     implementation(project(":feature:mapscreen"))
+    implementation(project(":feature:settings"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

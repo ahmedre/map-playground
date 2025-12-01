@@ -84,11 +84,21 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
                 modifier = modifier
             )
 
-            TextButton(
-                modifier = Modifier.align(Alignment.CenterEnd),
-                onClick = { mapTheme.value = if (mapTheme.value == MapStyle.DAY) MapStyle.NIGHT else MapStyle.DAY }
-            ) {
-                Text(stringResource(R.string.swap_theme))
+            Column(modifier = Modifier.align(Alignment.CenterEnd)) {
+                TextButton(
+                    onClick = {
+                        mapTheme.value =
+                            if (mapTheme.value == MapStyle.DAY) MapStyle.NIGHT else MapStyle.DAY
+                    }
+                ) {
+                    Text(stringResource(R.string.swap_theme))
+                }
+
+                TextButton(
+                    onClick = { state.eventSink(MapWrapperScreen.MapState.Event.Settings) }
+                ) {
+                    Text(stringResource(R.string.settings))
+                }
             }
 
             val context = LocalContext.current
