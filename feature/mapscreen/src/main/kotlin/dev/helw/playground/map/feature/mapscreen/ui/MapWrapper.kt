@@ -48,17 +48,21 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
         sheetContainerColor = Color.White,
         sheetContent = {
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Box(Modifier.fillMaxWidth().height(128.dp), contentAlignment = Alignment.Center) {
+                Box(Modifier
+                    .fillMaxWidth()
+                    .height(128.dp), contentAlignment = Alignment.Center) {
                     Text("Swipe up to expand sheet")
                 }
                 Text("Sheet content")
                 Button(
                     modifier =
-                        Modifier.padding(bottom = 64.dp).focusProperties {
-                            // Make sure the button is not keyboard focusable when it's offscreen.
-                            canFocus =
-                                scaffoldState.bottomSheetState.currentValue == SheetValue.Expanded
-                        },
+                        Modifier
+                            .padding(bottom = 64.dp)
+                            .focusProperties {
+                                // Make sure the button is not keyboard focusable when it's offscreen.
+                                canFocus =
+                                    scaffoldState.bottomSheetState.currentValue == SheetValue.Expanded
+                            },
                     onClick = { scope.launch { scaffoldState.bottomSheetState.partialExpand() } },
                 ) {
                     Text("Click to collapse sheet")
@@ -67,7 +71,7 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
         },
     ) { innerPadding ->
         Box(
-            modifier = Modifier.fillMaxSize().padding(innerPadding),
+            modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
             val mapLibreMap = remember { mutableStateOf<MapLibreMap?>(null) }
@@ -84,7 +88,9 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
                 modifier = modifier
             )
 
-            Column(modifier = Modifier.align(Alignment.CenterEnd)) {
+            Column(modifier = Modifier
+                .padding(innerPadding)
+                .align(Alignment.CenterEnd)) {
                 TextButton(
                     onClick = {
                         mapTheme.value =
