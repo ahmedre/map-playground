@@ -7,11 +7,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data object MapWrapperScreen : Screen {
     data class MapState(
+        val styleUrl: String,
         val eventSink: (Event) -> Unit
     ) : CircuitUiState {
 
         sealed class Event {
             data object Settings : Event()
+            data object SwapTheme : Event()
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
@@ -24,12 +25,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.slack.circuit.codegen.annotations.CircuitInject
-import dev.helw.playground.map.core.ui.MapStyle
 import dev.helw.playground.map.feature.mapscreen.MapWrapperScreen
 import dev.helw.playground.map.feature.mapscreen.R
 import dev.zacsweers.metro.AppScope
@@ -77,7 +76,7 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
             contentAlignment = Alignment.Center,
         ) {
             val mapLibreMap = remember { mutableStateOf<MapLibreMap?>(null) }
-            val mapTheme = remember { mutableStateOf(MapStyle.DAY) }
+            val isChecked = remember { mutableStateOf(false) }
 
             AndroidView(
                 factory = { context ->
@@ -98,10 +97,7 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
                     .background(Color.White.copy(alpha = 0.5f), shape = RoundedCornerShape(8.dp))
             ) {
                 TextButton(
-                    onClick = {
-                        mapTheme.value =
-                            if (mapTheme.value == MapStyle.DAY) MapStyle.NIGHT else MapStyle.DAY
-                    }
+                    onClick = { state.eventSink(MapWrapperScreen.MapState.Event.SwapTheme) }
                 ) {
                     Text(stringResource(R.string.swap_theme))
                 }
@@ -111,16 +107,12 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
                 ) {
                     Text(stringResource(R.string.settings))
                 }
+
+                Checkbox(isChecked.value, onCheckedChange =  { isChecked.value = it })
             }
 
-            val context = LocalContext.current
-            LaunchedEffect(mapLibreMap.value, mapTheme.value) {
-                mapLibreMap.value?.setStyle(
-                    when (mapTheme.value) {
-                        MapStyle.DAY -> context.getString(R.string.map_style_day)
-                        MapStyle.NIGHT -> context.getString(R.string.map_style_night)
-                    }
-                )
+            LaunchedEffect(mapLibreMap.value, state.styleUrl) {
+                mapLibreMap.value?.setStyle(state.styleUrl)
             }
 
         }
