@@ -2,4 +2,5 @@
 <resources>
     <string name="swap_theme">Swap Theme</string>
     <string name="settings">Settings</string>
+    <string name="quick_controls_title">Quick Controls</string>
 </resources>

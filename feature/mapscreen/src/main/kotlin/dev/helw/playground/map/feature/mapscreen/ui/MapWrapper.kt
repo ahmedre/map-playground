@@ -1,17 +1,19 @@
 package dev.helw.playground.map.feature.mapscreen.ui
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetScaffold
-import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -51,7 +53,6 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
             contentAlignment = Alignment.Center,
         ) {
             val mapLibreMap = remember { mutableStateOf<MapLibreMap?>(null) }
-            val isChecked = remember { mutableStateOf(false) }
 
             AndroidView(
                 factory = { context ->
@@ -64,26 +65,41 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
                 modifier = modifier
             )
 
-            Column(
+            ElevatedCard(
                 modifier = Modifier
                     .padding(innerPadding)
                     .align(Alignment.CenterEnd)
-                    .padding(horizontal = 4.dp)
-                    .background(Color.White.copy(alpha = 0.5f), shape = RoundedCornerShape(8.dp))
+                    .padding(horizontal = 8.dp)
+                    .widthIn(min = 100.dp, max = 150.dp),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.elevatedCardColors(
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.92f)
+                ),
+                elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp)
             ) {
-                TextButton(
-                    onClick = { state.eventSink(MapWrapperScreen.MapState.Event.SwapTheme) }
+                Column(
+                    modifier = Modifier.padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    Text(stringResource(R.string.swap_theme))
-                }
+                    Text(
+                        text = stringResource(R.string.quick_controls_title),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
 
-                TextButton(
-                    onClick = { state.eventSink(MapWrapperScreen.MapState.Event.Settings) }
-                ) {
-                    Text(stringResource(R.string.settings))
-                }
+                    MapControlButton(
+                        label = stringResource(R.string.swap_theme),
+                        iconRes = R.drawable.ic_swap_theme,
+                        onClick = { state.eventSink(MapWrapperScreen.MapState.Event.SwapTheme) }
+                    )
 
-                Checkbox(isChecked.value, onCheckedChange =  { isChecked.value = it })
+                    MapControlButton(
+                        label = stringResource(R.string.settings),
+                        iconRes = R.drawable.ic_settings_tune,
+                        onClick = { state.eventSink(MapWrapperScreen.MapState.Event.Settings) },
+                    )
+
+                }
             }
 
             LaunchedEffect(mapLibreMap.value, state.styleUrl) {
