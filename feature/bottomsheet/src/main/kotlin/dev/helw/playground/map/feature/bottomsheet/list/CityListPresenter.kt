@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.slack.circuit.runtime.presenter.Presenter
+import dev.helw.playground.map.feature.bottomsheet.common.CityRepository
 import dev.helw.playground.map.feature.bottomsheet.model.City
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
@@ -22,12 +23,13 @@ class CityListPresenter(
     @Composable
     override fun present(): CityListScreen.CityListState {
         val reverseSorting = remember { mutableStateOf(false) }
+        val cityList = remember { CityRepository.cities }
 
         val currentCityList = remember(reverseSorting.value) {
             if (reverseSorting.value) {
-                cities.reversed()
+                cityList.reversed()
             } else {
-                cities
+                cityList
             }
         }
 
@@ -37,12 +39,5 @@ class CityListPresenter(
                 CityListScreen.Event.ToggleSorting -> reverseSorting.value = !reverseSorting.value
             }
         }
-    }
-
-    companion object {
-        private val cities = listOf(
-            City(1, "Abu Dhabi", "United Arab Emirates"),
-            City(2, "Dubai", "United Arab Emirates"),
-        )
     }
 }

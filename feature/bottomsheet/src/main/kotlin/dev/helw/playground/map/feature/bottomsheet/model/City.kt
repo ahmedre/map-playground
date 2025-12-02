@@ -1,3 +1,11 @@
 package dev.helw.playground.map.feature.bottomsheet.model
 
-data class City(val id: Int, val name: String, val country: String)
+import androidx.annotation.StringRes
+
+data class City(
+    val id: Int,
+    @param:StringRes val nameRes: Int,
+    @param:StringRes val countryRes: Int,
+    val latitude: Double,
+    val longitude: Double
+)
