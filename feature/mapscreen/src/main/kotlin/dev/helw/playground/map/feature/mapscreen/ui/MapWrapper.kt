@@ -1,11 +1,13 @@
 package dev.helw.playground.map.feature.mapscreen.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -88,9 +90,13 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
                 modifier = modifier
             )
 
-            Column(modifier = Modifier
-                .padding(innerPadding)
-                .align(Alignment.CenterEnd)) {
+            Column(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .align(Alignment.CenterEnd)
+                    .padding(horizontal = 4.dp)
+                    .background(Color.White.copy(alpha = 0.5f), shape = RoundedCornerShape(8.dp))
+            ) {
                 TextButton(
                     onClick = {
                         mapTheme.value =
