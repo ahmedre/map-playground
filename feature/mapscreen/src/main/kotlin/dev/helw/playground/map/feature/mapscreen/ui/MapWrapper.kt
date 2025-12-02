@@ -29,6 +29,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.slack.circuit.codegen.annotations.CircuitInject
+import com.slack.circuit.foundation.CircuitContent
+import dev.helw.playground.map.core.ui.screen.BottomSheetScreen
 import dev.helw.playground.map.feature.mapscreen.MapWrapperScreen
 import dev.helw.playground.map.feature.mapscreen.R
 import dev.zacsweers.metro.AppScope
@@ -48,27 +50,7 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
         sheetPeekHeight = 128.dp,
         sheetContainerColor = Color.White,
         sheetContent = {
-            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Box(Modifier
-                    .fillMaxWidth()
-                    .height(128.dp), contentAlignment = Alignment.Center) {
-                    Text("Swipe up to expand sheet")
-                }
-                Text("Sheet content")
-                Button(
-                    modifier =
-                        Modifier
-                            .padding(bottom = 64.dp)
-                            .focusProperties {
-                                // Make sure the button is not keyboard focusable when it's offscreen.
-                                canFocus =
-                                    scaffoldState.bottomSheetState.currentValue == SheetValue.Expanded
-                            },
-                    onClick = { scope.launch { scaffoldState.bottomSheetState.partialExpand() } },
-                ) {
-                    Text("Click to collapse sheet")
-                }
-            }
+            CircuitContent(BottomSheetScreen, Modifier.fillMaxWidth())
         },
     ) { innerPadding ->
         Box(

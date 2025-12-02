@@ -49,6 +49,7 @@ metro {
 dependencies {
     implementation(project(":core:di"))
     implementation(project(":core:ui"))
+    implementation(project(":feature:bottomsheet"))
     implementation(project(":feature:mapscreen"))
     implementation(project(":feature:settings"))
 

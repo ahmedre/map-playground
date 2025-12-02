@@ -15,7 +15,8 @@ import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 
-class MapWrapperPresenter @AssistedInject constructor(
+@AssistedInject
+class MapWrapperPresenter(
     @Assisted private val navigator: Navigator,
     @param:ApplicationContext private val appContext: Context
 ): Presenter<MapWrapperScreen.MapState> {
