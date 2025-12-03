@@ -1,4 +1,4 @@
-package dev.helw.playground.map.feature.bottomsheet.model
+package dev.helw.playground.map.core.location
 
 import androidx.annotation.StringRes
 

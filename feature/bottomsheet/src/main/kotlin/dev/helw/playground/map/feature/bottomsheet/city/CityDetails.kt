@@ -17,7 +17,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.helw.playground.map.feature.bottomsheet.R
-import dev.helw.playground.map.feature.bottomsheet.common.City
 import dev.zacsweers.metro.AppScope
 
 @CircuitInject(CityScreen::class, AppScope::class)

@@ -1,4 +1,4 @@
-package dev.helw.playground.map.feature.bottomsheet.common
+package dev.helw.playground.map.feature.bottomsheet.city
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import dev.helw.playground.map.feature.bottomsheet.model.City
+import dev.helw.playground.map.core.location.City
 
 @Composable
 fun City(city: City, modifier: Modifier = Modifier) {

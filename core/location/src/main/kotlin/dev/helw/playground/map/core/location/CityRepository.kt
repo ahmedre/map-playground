@@ -1,9 +1,14 @@
-package dev.helw.playground.map.feature.bottomsheet.common
+package dev.helw.playground.map.core.location
 
-import dev.helw.playground.map.feature.bottomsheet.R
-import dev.helw.playground.map.feature.bottomsheet.model.City
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.SingleIn
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
-object CityRepository {
+@SingleIn(AppScope::class)
+@Inject
+class CityRepository {
     val cities = listOf(
         City(
             id = 1,
@@ -188,4 +193,15 @@ object CityRepository {
             longitude = 10.1815
         )
     )
+
+    private val mutableSelectedCityFlow = MutableStateFlow<City?>(null)
+    val selectedCityFlow: StateFlow<City?> = mutableSelectedCityFlow
+
+    fun setSelectedCity(city: City) {
+        mutableSelectedCityFlow.value = city
+    }
+
+    fun clearSelectedCity() {
+        mutableSelectedCityFlow.value = null
+    }
 }

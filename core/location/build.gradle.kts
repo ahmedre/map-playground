@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.metro)
 }
 
 android {
@@ -8,7 +9,14 @@ android {
     compileSdk = 36
 }
 
+metro {
+    enabled = true
+}
+
 dependencies {
+    implementation(libs.androidx.annotation)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 }
 
 

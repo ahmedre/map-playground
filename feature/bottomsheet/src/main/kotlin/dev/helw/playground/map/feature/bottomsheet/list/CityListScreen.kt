@@ -2,7 +2,7 @@ package dev.helw.playground.map.feature.bottomsheet.list
 
 import com.slack.circuit.runtime.CircuitUiState
 import com.slack.circuit.runtime.screen.Screen
-import dev.helw.playground.map.feature.bottomsheet.model.City
+import dev.helw.playground.map.core.location.City
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

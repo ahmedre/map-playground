@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- City names -->
+    <string name="city_name_abu_dhabi">Abu Dhabi</string>
+    <string name="city_name_alexandria">Alexandria</string>
+    <string name="city_name_algiers">Algiers</string>
+    <string name="city_name_amman">Amman</string>
+    <string name="city_name_beirut">Beirut</string>
+    <string name="city_name_cairo">Cairo</string>
+    <string name="city_name_casablanca">Casablanca</string>
+    <string name="city_name_constantine">Constantine</string>
+    <string name="city_name_doha">Doha</string>
+    <string name="city_name_dubai">Dubai</string>
+    <string name="city_name_gaza">Gaza</string>
+    <string name="city_name_jeddah">Jeddah</string>
+    <string name="city_name_jerusalem">Jerusalem</string>
+    <string name="city_name_kuwait_city">Kuwait City</string>
+    <string name="city_name_madinah">Madinah</string>
+    <string name="city_name_makkah">Makkah</string>
+    <string name="city_name_manama">Manama</string>
+    <string name="city_name_marrakech">Marrakech</string>
+    <string name="city_name_muscat">Muscat</string>
+    <string name="city_name_oran">Oran</string>
+    <string name="city_name_rabat">Rabat</string>
+    <string name="city_name_ramallah">Ramallah</string>
+    <string name="city_name_riyadh">Riyadh</string>
+    <string name="city_name_sharjah">Sharjah</string>
+    <string name="city_name_sousse">Sousse</string>
+    <string name="city_name_tunis">Tunis</string>
+    <!-- City countries -->
+    <string name="city_country_united_arab_emirates">United Arab Emirates</string>
+    <string name="city_country_egypt">Egypt</string>
+    <string name="city_country_algeria">Algeria</string>
+    <string name="city_country_jordan">Jordan</string>
+    <string name="city_country_lebanon">Lebanon</string>
+    <string name="city_country_morocco">Morocco</string>
+    <string name="city_country_qatar">Qatar</string>
+    <string name="city_country_palestine">Palestine</string>
+    <string name="city_country_saudi_arabia">Saudi Arabia</string>
+    <string name="city_country_kuwait">Kuwait</string>
+    <string name="city_country_bahrain">Bahrain</string>
+    <string name="city_country_oman">Oman</string>
+    <string name="city_country_tunisia">Tunisia</string>
+</resources>

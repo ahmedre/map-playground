@@ -5,10 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.slack.circuit.codegen.annotations.CircuitInject
 import com.slack.circuit.runtime.presenter.Presenter
+import dev.helw.playground.map.core.location.City
 import dev.helw.playground.map.core.ui.screen.BottomSheetScreen
 import dev.helw.playground.map.feature.bottomsheet.city.CityPresenter
 import dev.helw.playground.map.feature.bottomsheet.list.CityListPresenter
-import dev.helw.playground.map.feature.bottomsheet.model.City
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 

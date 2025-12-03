@@ -23,6 +23,7 @@ metro {
 dependencies {
     implementation(project(":core:di"))
     implementation(project(":core:ui"))
+    implementation(project(":core:location"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
