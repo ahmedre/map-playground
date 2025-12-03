@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,8 +32,13 @@ import dev.helw.playground.map.core.ui.screen.BottomSheetScreen
 import dev.helw.playground.map.feature.mapscreen.MapWrapperScreen
 import dev.helw.playground.map.feature.mapscreen.R
 import dev.zacsweers.metro.AppScope
+import org.maplibre.android.camera.CameraPosition
+import org.maplibre.android.camera.CameraUpdate
+import org.maplibre.android.camera.CameraUpdateFactory
+import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
+import kotlinx.coroutines.flow.first
 
 @OptIn(ExperimentalMaterial3Api::class)
 @CircuitInject(MapWrapperScreen::class, AppScope::class)
@@ -53,6 +59,7 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
             contentAlignment = Alignment.Center,
         ) {
             val mapLibreMap = remember { mutableStateOf<MapLibreMap?>(null) }
+            val isStyleLoaded = remember { mutableStateOf(false) }
 
             AndroidView(
                 factory = { context ->
@@ -102,8 +109,42 @@ fun MapWrapper(state: MapWrapperScreen.MapState, modifier: Modifier) {
                 }
             }
 
+            LaunchedEffect(mapLibreMap.value, state.selectedCity) {
+                val mapLibreMap = mapLibreMap.value
+
+                if (mapLibreMap != null) {
+                    // wait until the active style finishes loading before changing the camera.
+                    snapshotFlow { isStyleLoaded.value }
+                        .first { it }
+
+                    val cameraUpdate: CameraUpdate = state.selectedCity?.let { selectedCity ->
+                        CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                latitude = selectedCity.latitude,
+                                longitude = selectedCity.longitude
+                            ),
+                            10.0
+                        )
+                    } ?: CameraUpdateFactory.newCameraPosition(
+                        CameraPosition.Builder()
+                            .target(LatLng(0.0, 0.0))
+                            .zoom(1.3)
+                            .tilt(0.0)
+                            .build()
+                    )
+
+                    mapLibreMap.easeCamera(cameraUpdate)
+                }
+            }
+
             LaunchedEffect(mapLibreMap.value, state.styleUrl) {
-                mapLibreMap.value?.setStyle(state.styleUrl)
+                val mapLibreMap = mapLibreMap.value
+                if (mapLibreMap != null) {
+                    isStyleLoaded.value = false
+                    mapLibreMap.setStyle(state.styleUrl) {
+                        isStyleLoaded.value = true
+                    }
+                }
             }
 
         }
