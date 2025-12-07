@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_style_day" translatable="false">https://basemaps.cartocdn.com/gl/positron-gl-style/style.json</string>
+    <string name="map_style_night" translatable="false">https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json</string>
+</resources>
