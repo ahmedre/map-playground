@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.slack.circuit.codegen.annotations.CircuitInject
+import com.slack.circuit.retained.rememberRetained
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 import dev.helw.playground.map.core.di.ApplicationContext
@@ -29,7 +30,7 @@ class MapWrapperPresenter(
 
     @Composable
     override fun present(): MapWrapperScreen.MapState {
-        val mapTheme = remember { mutableStateOf(MapStyle.DAY) }
+        val mapTheme = rememberRetained { mutableStateOf(MapStyle.DAY) }
         val styleUrl = remember(mapTheme.value) {
             mutableStateOf(
                 when (mapTheme.value) {
