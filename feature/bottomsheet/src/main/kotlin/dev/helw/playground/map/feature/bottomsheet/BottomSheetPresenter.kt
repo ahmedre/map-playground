@@ -9,6 +9,7 @@ import com.slack.circuit.runtime.presenter.Presenter
 import dev.helw.playground.map.core.location.City
 import dev.helw.playground.map.core.ui.screen.BottomSheetScreen
 import dev.helw.playground.map.feature.bottomsheet.city.CityPresenter
+import dev.helw.playground.map.feature.bottomsheet.city.CityScreen
 import dev.helw.playground.map.feature.bottomsheet.list.CityListPresenter
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
@@ -27,7 +28,7 @@ class BottomSheetPresenter(
         val cityPresenter = remember(city.value) {
             val currentCity = city.value
             if (currentCity != null) {
-                cityPresenterFactory.create(currentCity, resetCityLambda)
+                cityPresenterFactory.create(CityScreen(currentCity), resetCityLambda)
             } else {
                 null
             }

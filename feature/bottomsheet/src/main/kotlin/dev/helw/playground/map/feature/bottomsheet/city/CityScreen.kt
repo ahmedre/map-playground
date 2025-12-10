@@ -6,7 +6,7 @@ import dev.helw.playground.map.core.location.City
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data object CityScreen : Screen {
+data class CityScreen(val city: City) : Screen {
     data class CityState(
         val city: City,
         val eventSink: (Event) -> Unit
