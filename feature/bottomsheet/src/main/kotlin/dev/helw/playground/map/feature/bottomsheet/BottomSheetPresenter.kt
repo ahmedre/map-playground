@@ -1,6 +1,7 @@
 package dev.helw.playground.map.feature.bottomsheet
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.slack.circuit.codegen.annotations.CircuitInject
@@ -32,12 +33,17 @@ class BottomSheetPresenter(
             }
         }
 
-        val cityListPresenter = remember {
-            cityListPresenterFactory.create { city.value = it }
+        val haveCity = remember { derivedStateOf { city.value != null } }
+        val cityListPresenter = remember(haveCity.value) {
+            if (haveCity.value) {
+                null
+            } else {
+                cityListPresenterFactory.create { city.value = it }
+            }
         }
 
         return BottomSheetState(
-            cityListPresenter.present(),
+            cityListPresenter?.present(),
             cityPresenter?.present()
         ) {}
     }

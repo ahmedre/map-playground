@@ -13,7 +13,7 @@ import dev.zacsweers.metro.AppScope
 fun BottomSheetContent(state: BottomSheetState, modifier: Modifier = Modifier) {
     if (state.cityState != null) {
         CityDetails(state.cityState, modifier)
-    } else {
+    } else if (state.cityListState != null) {
         CityList(state.cityListState, modifier)
     }
 }
