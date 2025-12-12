@@ -12,6 +12,7 @@ class CityPresenter(
     @Assisted private val onClearCity: () -> Unit
 ) : Presenter<CityScreen.CityState> {
 
+    @Suppress("unused")
     @AssistedFactory
     fun interface Factory {
         fun create(screen: CityScreen, onClearCity: () -> Unit): CityPresenter

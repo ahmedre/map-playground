@@ -14,6 +14,7 @@ import dev.helw.playground.map.feature.bottomsheet.list.CityListPresenter
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 
+@Suppress("unused")
 @Inject
 @CircuitInject(BottomSheetScreen::class, AppScope::class)
 class BottomSheetPresenter(

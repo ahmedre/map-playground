@@ -10,6 +10,7 @@ import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 
+@Suppress("unused")
 @AssistedInject
 class CityListPresenter(
     private val cityRepository: CityRepository,

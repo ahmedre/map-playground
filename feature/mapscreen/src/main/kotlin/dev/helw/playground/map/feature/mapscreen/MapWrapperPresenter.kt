@@ -21,6 +21,7 @@ class MapWrapperPresenter(
     @param:ApplicationContext private val appContext: Context
 ): Presenter<MapWrapperScreen.MapState> {
 
+    @Suppress("unused")
     @CircuitInject(MapWrapperScreen::class, AppScope::class)
     @AssistedFactory
     fun interface Factory {
