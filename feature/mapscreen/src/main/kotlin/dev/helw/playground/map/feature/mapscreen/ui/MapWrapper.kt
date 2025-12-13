@@ -32,13 +32,13 @@ import dev.helw.playground.map.core.ui.screen.BottomSheetScreen
 import dev.helw.playground.map.feature.mapscreen.MapWrapperScreen
 import dev.helw.playground.map.feature.mapscreen.R
 import dev.zacsweers.metro.AppScope
+import kotlinx.coroutines.flow.first
 import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.camera.CameraUpdate
 import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
-import kotlinx.coroutines.flow.first
 
 @OptIn(ExperimentalMaterial3Api::class)
 @CircuitInject(MapWrapperScreen::class, AppScope::class)

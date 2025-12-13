@@ -1,12 +1,10 @@
 package dev.helw.playground.map.feature.bottomsheet
 
 import com.slack.circuit.runtime.CircuitUiState
-import dev.helw.playground.map.feature.bottomsheet.city.CityScreen
-import dev.helw.playground.map.feature.bottomsheet.list.CityListScreen
+import dev.helw.playground.map.core.location.City
 
 data class BottomSheetState(
-    val cityListState: CityListScreen.CityListState?,
-    val cityState: CityScreen.CityState?,
+    val city: City?,
     val eventSink: (Event) -> Unit
 ) : CircuitUiState
 
